@@ -1,0 +1,122 @@
+
+
+Could be either or. Each has advantages and disadvantages. Best to learn both.
+
+Basics:
+DFS = recursive function (space intensive, due to it storing each recursive call onto the memory stack)
+BFS = Queue + while loop (less space intense)
+////////////////////////////////////////////////////////////////////////////////////
+      //  foreach(char[] cells in grid)
+      //  {
+            //foreach(char cell in cells)
+            //{
+            //    Console.WriteLine(cell);
+            //}
+           //int vertex = cells[j]
+          // Console.WriteLine(cells.Length);
+            //Console.WriteLine(grid.Length);
+       // }
+       // for(int i=0;i<grid[0].le)
+
+////////////////////////////////////////////////////////////////////////////////////
+Input:
+ 
+[2,4], 3
+Expected:
+ 
+1.5
+Actual:
+ 
+2.0
+StdOut:
+Surpslue 3
+i0 difference : 0 potential cap4
+i1 difference : 2 potential cap2
+
+////////////////////////////
+Test Case #2
+Input:
+ 
+[2,4,6], 3
+Expected:
+ 
+1
+Actual:
+ 
+2.0
+StdOut:
+Surpslue 9
+i0 difference : 0 potential cap6
+i1 difference : 2 potential cap4
+i2 difference : 6 potential cap2
+
+////////////////////////////
+Test Case #6
+Input:
+ 
+[210,200,150,193,130,110,209,342,117], 1530
+Expected:
+ 
+211
+Actual:
+ 
+179.0
+StdOut:
+Surpslue 131
+i0 difference : 0 potential cap117
+i1 difference : -225 potential cap342
+i2 difference : 41 potential cap209
+i3 difference : 338 potential cap110
+i3 difference : 338 potential cap110
+
+
+using System;
+// you can also use other imports, for example:
+// using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int solution(int N) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+        return binary(N);
+    }
+            static int binary(int N)
+        {
+            int i;
+            int maxGap = 0;
+            int currentGap = 0;
+            int countPrev1 = 0;
+            int remain = 0;
+            int remainPrev = 0;
+            for ( i = 0; N > 0; i++)
+            {
+                remainPrev = remain;
+                 remain = N % 2;
+                N = N / 2;
+               
+ 
+                 if(remain ==1)
+                {
+                    countPrev1++;
+                    if (countPrev1 > 1 && remainPrev ==0)
+                    {
+                        maxGap = Math.Max(maxGap, currentGap);
+                       
+                    }
+                    currentGap = 0;
+                }
+                else if (remain == 0 )
+                {
+                    currentGap += 1;
+
+                
+                }
+                //Console.Write(remain);
+            }
+            //Console.WriteLine("+");
+            //Console.WriteLine(maxGap);
+            return maxGap;
+        }
+}
